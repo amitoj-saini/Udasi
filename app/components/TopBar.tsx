@@ -1,18 +1,32 @@
 export default function TopBar() {
     return (
-        <div className="light-border border-b h-14 w-full">
+        <div className="dark:border-zinc-800 border-zinc-200 border-b h-14 w-full">
             <div className="w-full flex items-center h-full px-4 md:px-8 lg:px-14">
                 <div>
                     <a className="flex" href="/">
-                        <img className="w-6 h-6" src="/logo.png"></img>
-                        <h1 className="mx-2 text-base font-bold">Udasi</h1>
+                        <img className="w-6 h-6" src="/logo.svg"></img>
+                        <h1 className="sm:block hidden mx-4 text-base font-bold">Udasi</h1>
                     </a>
                 </div>
-                <div style={{color: "var(--light-text)"}} className="mx-6 text-xs">
-                    <nav>
-                        <a className="hover-color mx-2" href="/">Home</a>
-                        <a className="hover-color mx-2" href="#">Source Code</a>
+                <div className="dark:text-gray-400 text-gray-700 mx-6 text-xs">
+                    <nav className="md:block hidden">
+                        <a className="dark:hover:text-white hover:text-black mx-2" href="/">Home</a>
+                        <a className="dark:hover:text-white hover:text-black mx-2" href="#">Source Code</a>
+                        <a className="dark:hover:text-white hover:text-black mx-2" href="/">Documentation</a>
+                        <a className="dark:hover:text-white hover:text-black mx-2" href="/">Socials</a>
+                        <a className="dark:hover:text-white hover:text-black mx-2" href="/">Blog</a>
                     </nav>
+                </div>
+                <div className="flex h-full grow items-center">
+                    <div className="ml-auto w-full flex-1 md:w-auto md:flex-none">
+                        <button className="dark:border-zinc-800 border-zinc-200 inline-flex items-center whitespace-nowrap rounded-md font-normal transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-transparent shadow-sm dark:hover:bg-zinc-800 hover:bg-gray-100 dark:hover:text-white hover:text-black h-9 px-4 py-2 relative w-full justify-start text-sm text-gray-400 sm:pr-12 md:w-40 lg:w-64">
+                            <span className="text-xs hidden lg:inline-flex">Search the jeevan of...</span>
+                            <span className="text-xs inline-flex lg:hidden">Search...</span>
+                            <kbd className="dark:bg-zinc-800 dark:border-zinc-800 border-zinc-200 pointer-events-none absolute right-1.5 top-1.5 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+                                <span className="text-xs">⌘</span>K
+                            </kbd>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

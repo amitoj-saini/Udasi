@@ -1,4 +1,7 @@
+"use client";
+
 import TopBar from "./components/TopBar";
+import { useEffect } from "react";
 
 export default function Home() {
     return (
