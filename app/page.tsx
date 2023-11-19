@@ -1,7 +1,4 @@
-"use client";
-
 import TopBar from "./components/TopBar";
-import { useEffect } from "react";
 
 export default function Home() {
     return (
@@ -15,6 +12,3 @@ export default function Home() {
         </div>
     )
 }
-
-
-//<h1 className="text-5xl font-semibold"><span style={{color: "var(--yellow)"}}>Jeevan</span> of the <span style={{color: "var(--orange)"}}>Gurus</span> and their <span style={{color: "var(--blue)"}}>Gursikhs</span>.</h1>
