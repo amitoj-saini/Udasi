@@ -19,7 +19,7 @@ const  changeTheme = (event: React.MouseEvent<HTMLDivElement>) => {
 export default function ToggleTheme({theme}: {theme: string}) {
 
     return (
-        <div onClick={changeTheme} className="ml-4 w-8 h-8 rounded-md flex justify-center items-center dark:hover:bg-zinc-800 hover:bg-gray-100 cursor-pointer">
+        <div onClick={changeTheme} className="ml-4 w-8 h-8 rounded-md flex justify-center items-center dark:hover:bg-black hover:bg-gray-100 cursor-pointer">
             <img id="toggletheme" className="w-4 h-4 dark:invert" src={((theme == "light") ? "/moon.svg" : "/sun.svg")}></img>
         </div>
     )

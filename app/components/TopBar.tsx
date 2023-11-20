@@ -1,5 +1,8 @@
-import { cookies } from "next/headers"
-import ToggleTheme from "./ToggleTheme"
+import React, { useEffect } from 'react';
+import { cookies } from "next/headers";
+import ToggleTheme from "./ToggleTheme";
+import Search from "./Search";
+
 
 export default function TopBar() {
     return (
@@ -22,13 +25,7 @@ export default function TopBar() {
                 </div>
                 <div className="flex h-full grow items-center">
                     <div className="ml-auto w-full flex-1 md:w-auto md:flex-none">
-                        <button className="dark:border-zinc-800 border-zinc-200 inline-flex items-center whitespace-nowrap rounded-md font-normal transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-transparent shadow-sm dark:hover:bg-zinc-800 hover:bg-gray-100 dark:hover:text-white hover:text-black h-9 px-4 py-2 relative w-full justify-start text-sm text-gray-400 sm:pr-12 md:w-40 lg:w-64">
-                            <span className="text-xs hidden lg:inline-flex">Search the jeevan of...</span>
-                            <span className="text-xs inline-flex lg:hidden">Search...</span>
-                            <kbd className="bg-gray-100 dark:bg-zinc-800 dark:border-zinc-800 border-zinc-200 pointer-events-none absolute right-1.5 top-1.5 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
-                                <span className="text-xs">⌘</span>K
-                            </kbd>
-                        </button>
+                        <Search/>
                     </div>
                     
                     <ToggleTheme theme={cookies().get("theme")?.value || "light"}/>
