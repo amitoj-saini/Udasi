@@ -1,3 +1,4 @@
+import { getFormattedMapping } from "../utils/datastore";
 import React, { useEffect } from 'react';
 import { cookies } from "next/headers";
 import ToggleTheme from "./ToggleTheme";
@@ -5,6 +6,7 @@ import Search from "./Search";
 
 
 export default function TopBar() {
+    let data = getFormattedMapping();
     return (
         <div className="dark:border-zinc-800 border-zinc-200 border-b h-14 w-full">
             <div className="w-full flex items-center h-full px-4 md:px-8 lg:px-14">
@@ -25,7 +27,7 @@ export default function TopBar() {
                 </div>
                 <div className="flex h-full grow items-center">
                     <div className="ml-auto w-full flex-1 md:w-auto md:flex-none">
-                        <Search/>
+                        <Search data={data}/>
                     </div>
                     
                     <ToggleTheme theme={cookies().get("theme")?.value || "light"}/>

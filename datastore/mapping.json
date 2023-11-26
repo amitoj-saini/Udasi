@@ -1,0 +1,77 @@
+[
+    {
+        "title": "Sri Guru Nanak Dev Ji",
+        "type": "Guru",
+        "timeline": "guru/guru_nanak_dev_ji.json"
+    },
+    {
+        "title": "Sri Guru Angad Dev Ji",
+        "type": "Guru",
+        "timeline": "guru/guru_angad_devji.json"
+    },
+    {
+        "title": "Sri Guru Amar Das Ji",
+        "type": "Guru",
+        "timeline": "guru/guru_amar_das_ji.json"
+    },
+    {
+        "title": "Sri Guru Ram Das Ji",
+        "type": "Guru",
+        "timeline": "guru/guru_ram_das_ji.json"
+    },
+    {
+        "title": "Sri Guru Arjun Dev Ji",
+        "type": "Guru",
+        "timeline": "guru/guru_arjun_dev_ji.json"
+    },
+    {
+        "title": "Sri Guru Hargobind Sahib Ji",
+        "type": "Guru",
+        "timeline": "guru/guru_har_gobind_sahib_ji.json"
+    },
+    {
+        "title": "Sri Guru Har Rai Sahib Ji",
+        "type": "Guru",
+        "timeline": "guru/guru_har_rai_sahib_ji.json"
+    },
+    {
+        "title": "Sri Guru Har Krishan Sahib Ji",
+        "type": "Guru",
+        "timeline": "guru/guru_har_krishan_sahib_ji.json"
+    },
+    {
+        "title": "Sri Guru Tegh Bahadur Sahib Ji",
+        "type": "Guru",
+        "timeline": "guru/guru_tegh_bahadur_sahib_ji.json"
+    },
+    {
+        "title": "Sri Guru Gobind Singh Sahib Ji",
+        "type": "Guru",
+        "timeline": "guru/guru_gobind_singh_ji_mahraj.json"
+    },
+    {
+        "title": "Sri Granth Sahib Ji Mahraj",
+        "type": "Guru",
+        "timeline": "guru/guru_granth_sahib_ji_mahraj.json"
+    },
+    {
+        "title": "Bhai Mardana",
+        "type": "Gursikh",
+        "timeline": "gursikh/bhai_mardana.json"
+    },
+    {
+        "title": "Baba Budha Ji",
+        "type": "Gursikh",
+        "timeline": "gursikh/baba_budha_ji.json"
+    },
+    {
+        "title": "Baba Deep Singh",
+        "type": "Gursikh",
+        "timeline": "gursikh/baba_deep_singh.json"
+    },
+    {
+        "title": "Baba Banda Singh Bahadur",
+        "type": "Gursikh",
+        "timeline": "gursikh/baba_banda_singh_bahadur.json"
+    }
+]
