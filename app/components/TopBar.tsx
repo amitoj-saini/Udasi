@@ -1,4 +1,4 @@
-import { getFormattedMapping } from "../utils/datastore";
+import { getMapping } from "../utils/datastore";
 import React, { useEffect } from 'react';
 import { cookies } from "next/headers";
 import ToggleTheme from "./ToggleTheme";
@@ -6,7 +6,7 @@ import Search from "./Search";
 
 
 export default function TopBar() {
-    let data = getFormattedMapping();
+    let data = getMapping();
     return (
         <div className="dark:border-zinc-800 border-zinc-200 border-b h-14 w-full">
             <div className="w-full flex items-center h-full px-4 md:px-8 lg:px-14">
