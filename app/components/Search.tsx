@@ -1,14 +1,17 @@
 "use client";
 import { sikhsMapping } from "../utils/datastore";
 import { useEffect, useState, useRef } from "react";
+import { useRouter } from 'next/navigation';
+import Link from "next/link";
 
 export default function Search({ data } : { data: sikhsMapping }) {
     const [searchModal, setShowSearchModal] = useState(false);
-    const [hoveredItem, setHoveredItem] = useState("Sri Guru Nanak Dev Ji"); // default Guru selected
+    const [hoveredItem, setHoveredItem] = useState(1); // default Guru selected
     const [searchQuery, setSearchQuery] = useState("");
     const [filteredData, setFilteredData] = useState(data);
     const [closeoutAnimating, setCloseoutAnimating] = useState(false);
 
+    const router = useRouter();
     const search = useRef<HTMLInputElement>(null);
     const toggleModal = async () => {
         if (searchModal) {
@@ -23,7 +26,7 @@ export default function Search({ data } : { data: sikhsMapping }) {
         }, 100);
     }
 
-    const handleMouseEnter = (item: string) => {
+    const handleMouseEnter = (item: number) => {
         setHoveredItem(item);
     }
 
@@ -32,25 +35,47 @@ export default function Search({ data } : { data: sikhsMapping }) {
     };
 
     useEffect(() => {
-        const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.key == "Escape" && searchModal) 
-                return toggleModal(); 
-            if ((event.metaKey || event.ctrlKey) && event.key == "k") 
-                toggleModal();
-            
-        }
-        document.addEventListener("keydown", handleKeyDown);
-
-        return () => document.removeEventListener('keydown', handleKeyDown);
-    }, [searchModal]);
-
-    useEffect(() => {
         const filtered = data.filter((item) =>
             item.title.toLowerCase().includes(searchQuery.toLowerCase())
         );
         setFilteredData(filtered);
-        if (filtered.length > 0)  setHoveredItem(filtered[0].title);
+        if (filtered.length > 0)  setHoveredItem(filtered[0].id);
     }, [searchQuery, data]);    
+
+    useEffect(() => {
+        const scrollIntoView = () => {
+            const selectedElement = document.getElementById(`sikh-${hoveredItem}`);
+            if (selectedElement) selectedElement.scrollIntoView({ behavior: "smooth", block: "center" });    
+        }
+
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (searchModal) {
+                let ids: number[] = Array.from(document.querySelectorAll("[data-type=sikh]")).map((element) => parseInt(element.getAttribute("data-id") || "1", 10));
+                if (event.key == "Escape") return toggleModal();
+                else if (event.key == "Enter") router.push(`/map/${hoveredItem}`);
+                else if (event.key == "ArrowDown") {
+                    let nextItem = ids.indexOf(hoveredItem)+1;
+                    if (nextItem < ids.length)
+                        setHoveredItem(ids[nextItem]);
+                        scrollIntoView();
+                } else if (event.key == "ArrowUp") {
+                    let prevItem = ids.indexOf(hoveredItem)-1;
+                    if (prevItem >= 0) {
+                        setHoveredItem(ids[prevItem]);
+                        scrollIntoView();
+                    }
+                }
+            }
+            
+            if ((event.metaKey || event.ctrlKey) && event.key == "k") 
+                toggleModal();
+        }
+        document.addEventListener("keydown", handleKeyDown);
+
+        return () => document.removeEventListener('keydown', handleKeyDown);
+    }, [searchModal, hoveredItem, router, filteredData]);
+
+    
     return (
         <>
             <button onClick={toggleModal} className="dark:border-zinc-800 border-zinc-200 inline-flex items-center whitespace-nowrap rounded-md font-normal transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-transparent shadow-sm dark:hover:bg-black hover:bg-gray-100 dark:hover:text-white hover:text-black h-9 px-4 py-2 relative w-full justify-start text-sm text-gray-400 sm:pr-12 md:w-40 lg:w-64">
@@ -80,9 +105,12 @@ export default function Search({ data } : { data: sikhsMapping }) {
                         {filteredData.map((guru) => {
                             if (guru.type == "Guru") {
                                 return (
-                                    <div onMouseEnter={() => handleMouseEnter(guru.title)} key={guru.title} className={`rounded-sm relative flex cursor-default select-none items-center p-3 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 ${hoveredItem === guru.title ? 'dark:bg-zinc-900 bg-zinc-100' : ''}`}>
-                                        {guru.title}
-                                    </div>
+                                    <Link href={`/map/${guru.id}`} data-type="sikh" data-id={guru.id} id={`sikh-${guru.id}`} key={guru.id}>
+                                        <div onMouseEnter={() => handleMouseEnter(guru.id)} className={`rounded-sm relative flex cursor-default select-none items-center p-3 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 ${hoveredItem === guru.id ? 'dark:bg-zinc-900 bg-zinc-100' : ''}`}>
+                                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-2 h-4 w-4"><path d="M3.5 2C3.22386 2 3 2.22386 3 2.5V12.5C3 12.7761 3.22386 13 3.5 13H11.5C11.7761 13 12 12.7761 12 12.5V6H8.5C8.22386 6 8 5.77614 8 5.5V2H3.5ZM9 2.70711L11.2929 5H9V2.70711ZM2 2.5C2 1.67157 2.67157 1 3.5 1H8.5C8.63261 1 8.75979 1.05268 8.85355 1.14645L12.8536 5.14645C12.9473 5.24021 13 5.36739 13 5.5V12.5C13 13.3284 12.3284 14 11.5 14H3.5C2.67157 14 2 13.3284 2 12.5V2.5Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                                            {guru.title}
+                                        </div>
+                                    </Link>
                                 )
                             }
                         })}
@@ -97,9 +125,12 @@ export default function Search({ data } : { data: sikhsMapping }) {
                         {filteredData.map((gursikh) => {
                             if (gursikh.type == "Gursikh") {
                                 return (
-                                    <div onMouseEnter={() => handleMouseEnter(gursikh.title)} key={gursikh.title} className={`rounded-sm relative flex cursor-default select-none items-center p-3 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 ${hoveredItem === gursikh.title ? 'dark:bg-zinc-900 bg-zinc-100' : ''}`}>
-                                        {gursikh.title}
-                                    </div>
+                                    <Link href={`/map/${gursikh.id}`} data-type="sikh" data-id={gursikh.id} id={`sikh-${gursikh.id}`} key={gursikh.id}>
+                                        <div onMouseEnter={() => handleMouseEnter(gursikh.id)} className={`rounded-sm relative flex cursor-default select-none items-center p-3 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 ${hoveredItem === gursikh.id ? 'dark:bg-zinc-900 bg-zinc-100' : ''}`}>
+                                            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-2 h-4 w-4"><path d="M3.5 2C3.22386 2 3 2.22386 3 2.5V12.5C3 12.7761 3.22386 13 3.5 13H11.5C11.7761 13 12 12.7761 12 12.5V6H8.5C8.22386 6 8 5.77614 8 5.5V2H3.5ZM9 2.70711L11.2929 5H9V2.70711ZM2 2.5C2 1.67157 2.67157 1 3.5 1H8.5C8.63261 1 8.75979 1.05268 8.85355 1.14645L12.8536 5.14645C12.9473 5.24021 13 5.36739 13 5.5V12.5C13 13.3284 12.3284 14 11.5 14H3.5C2.67157 14 2 13.3284 2 12.5V2.5Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                                            {gursikh.title}
+                                        </div>
+                                    </Link>
                                 )
                             }
                         })}
@@ -112,5 +143,3 @@ export default function Search({ data } : { data: sikhsMapping }) {
         </>
     )
 }
-
-//<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="mr-2 h-4 w-4"><path d="M3.5 2C3.22386 2 3 2.22386 3 2.5V12.5C3 12.7761 3.22386 13 3.5 13H11.5C11.7761 13 12 12.7761 12 12.5V6H8.5C8.22386 6 8 5.77614 8 5.5V2H3.5ZM9 2.70711L11.2929 5H9V2.70711ZM2 2.5C2 1.67157 2.67157 1 3.5 1H8.5C8.63261 1 8.75979 1.05268 8.85355 1.14645L12.8536 5.14645C12.9473 5.24021 13 5.36739 13 5.5V12.5C13 13.3284 12.3284 14 11.5 14H3.5C2.67157 14 2 13.3284 2 12.5V2.5Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>    

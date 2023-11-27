@@ -5,7 +5,7 @@ import fs from "fs";
 let mapFile = "datastore/mapping.json";
 let datastore = "datastore";
 
-interface sikhMapping {type: string, title: string, timeline: string}
+interface sikhMapping {type: string, title: string, timeline: string, id: number}
 export interface sikhsMapping extends Array<sikhMapping> {}
 
 export interface sikhFormattedMapping { 
