@@ -1,6 +1,11 @@
+import { getSikh } from "@/app/utils/datastore";
 import TopBar from "../../components/TopBar";
 
-export default function Home() {
+
+
+export default function Sikh({params, searchParams} : {params: { sikh: string; }; searchParams: {};}) {
+    const { sikh } = params;
+    getSikh(sikh);
     return (
         <div className="w-full h-full flex flex-col">
             <TopBar/>

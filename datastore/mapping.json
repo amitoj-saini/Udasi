@@ -2,67 +2,67 @@
     {
         "title": "Sri Guru Nanak Dev Ji",
         "type": "Guru",
-        "timeline": "guru/guru_nanak_dev_ji.json",
+        "timeline": "gurus/guru_nanak_dev_ji.json",
         "id": 1
     },
     {
         "title": "Sri Guru Angad Dev Ji",
         "type": "Guru",
-        "timeline": "guru/guru_angad_devji.json",
+        "timeline": "gurus/guru_angad_devji.json",
         "id": 2
     },
     {
         "title": "Sri Guru Amar Das Ji",
         "type": "Guru",
-        "timeline": "guru/guru_amar_das_ji.json",
+        "timeline": "gurus/guru_amar_das_ji.json",
         "id": 3
     },
     {
         "title": "Sri Guru Ram Das Ji",
         "type": "Guru",
-        "timeline": "guru/guru_ram_das_ji.json",
+        "timeline": "gurus/guru_ram_das_ji.json",
         "id": 4
     },
     {
         "title": "Sri Guru Arjun Dev Ji",
         "type": "Guru",
-        "timeline": "guru/guru_arjun_dev_ji.json",
+        "timeline": "gurus/guru_arjun_dev_ji.json",
         "id": 5
     },
     {
         "title": "Sri Guru Hargobind Sahib Ji",
         "type": "Guru",
-        "timeline": "guru/guru_har_gobind_sahib_ji.json",
+        "timeline": "gurus/guru_har_gobind_sahib_ji.json",
         "id": 6
     },
     {
         "title": "Sri Guru Har Rai Sahib Ji",
         "type": "Guru",
-        "timeline": "guru/guru_har_rai_sahib_ji.json",
+        "timeline": "gurus/guru_har_rai_sahib_ji.json",
         "id": 7
     },
     {
         "title": "Sri Guru Har Krishan Sahib Ji",
         "type": "Guru",
-        "timeline": "guru/guru_har_krishan_sahib_ji.json",
+        "timeline": "gurus/guru_har_krishan_sahib_ji.json",
         "id": 8
     },
     {
         "title": "Sri Guru Tegh Bahadur Sahib Ji",
         "type": "Guru",
-        "timeline": "guru/guru_tegh_bahadur_sahib_ji.json",
+        "timeline": "gurus/guru_tegh_bahadur_sahib_ji.json",
         "id": 9
     },
     {
         "title": "Sri Guru Gobind Singh Sahib Ji",
         "type": "Guru",
-        "timeline": "guru/guru_gobind_singh_ji_mahraj.json",
+        "timeline": "gurus/guru_gobind_singh_ji_mahraj.json",
         "id": 10
     },
     {
         "title": "Sri Granth Sahib Ji Mahraj",
         "type": "Guru",
-        "timeline": "guru/guru_granth_sahib_ji_mahraj.json",
+        "timeline": "gurus/guru_granth_sahib_ji_mahraj.json",
         "id": 11
     },
     {
