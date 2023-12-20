@@ -13,8 +13,17 @@ export interface sikhFormattedMapping {
     gursikh: sikhMapping[] 
 }
 
-export interface SikhTimeline {
-    
+interface sikhHistory {
+
+}
+
+interface sikhMap {
+    map: string,
+    history: sikhHistory[]
+}
+
+export interface sikhTimeline {
+    maps: sikhMap[]
 }
 
 const readJson = (filename: string, fallBack: object | [] = {}) => {
@@ -33,11 +42,11 @@ export const getSikh = (id: string) => {
         let sikhId = parseInt(id);
         if (!isNaN(sikhId)) {
             let mapping = getMapping();
-            mapping.forEach((sikh : sikhMapping) => {
-                if (sikhId == sikh.id) {
-                    return readJson(path.join(datastore, "timelines", sikh.timeline));
+            for (let i=0; i<mapping.length; i++) {
+                if (sikhId == mapping[i].id) {
+                    return readJson(path.join(datastore, "timelines", mapping[i].timeline));
                 }
-            });
+            }
         }
     } catch {}
     return false;

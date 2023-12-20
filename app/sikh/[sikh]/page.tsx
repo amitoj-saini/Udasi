@@ -1,18 +1,15 @@
+import Timeline from "@/app/components/Timeline";
 import { getSikh } from "@/app/utils/datastore";
-import TopBar from "../../components/TopBar";
-
-
+import TopBar from "@/app/components/TopBar";
 
 export default function Sikh({params, searchParams} : {params: { sikh: string; }; searchParams: {};}) {
     const { sikh } = params;
-    getSikh(sikh);
+    let data = getSikh(sikh);
     return (
         <div className="w-full h-full flex flex-col">
             <TopBar/>
-            <div className="w-full my-12 flex text-center justify-center">
-                <div className="max-w-xs md:max-w-lg lg:max-w-3xl">
-                    
-                </div>
+            <div className="w-full grow my-12 flex text-center justify-center">
+                <Timeline data={data}></Timeline>
             </div>
         </div>
     )

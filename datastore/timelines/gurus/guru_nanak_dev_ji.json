@@ -1,7 +1,11 @@
 {
     "maps": [
         {
-            "svg": ""
+            "map": "pakistan.svg",
+            
+            "history": [
+
+            ]
         }
     ]
 }
