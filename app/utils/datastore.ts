@@ -18,11 +18,21 @@ interface sikhHistory {
 }
 
 interface sikhMap {
-    map: string,
+    src: string,
+    display: {
+        width: number,
+        height: number,
+        x: number,
+        y: number,
+    },
     history: sikhHistory[]
 }
 
 export interface sikhTimeline {
+    canvas: {
+        width: number,
+        height: number
+    },
     maps: sikhMap[]
 }
 

@@ -1,5 +1,5 @@
 {
-    "canvas": {
+    "mapwindow": {
         "height": 700,
         "width": 1267
     },
@@ -21,7 +21,7 @@
             "display": {
                 "width": 612,
                 "height": 690,
-                "x": 655,
+                "x": 0,
                 "y": 0
             },
             "history": [
