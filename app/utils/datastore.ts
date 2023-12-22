@@ -24,12 +24,13 @@ interface sikhMap {
         height: number,
         x: number,
         y: number,
+        rotation: number
     },
     history: sikhHistory[]
 }
 
 export interface sikhTimeline {
-    canvas: {
+    container: {
         width: number,
         height: number
     },
