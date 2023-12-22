@@ -18,10 +18,10 @@ interface sikhHistory {
 }
 
 interface sikhMap {
+    id: number,
     src: string,
     display: {
-        width: number,
-        height: number,
+        zoom: number,
         x: number,
         y: number,
         rotation: number

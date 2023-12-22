@@ -7,6 +7,8 @@ interface CustomCSSStyleDeclaration extends CSSStyleDeclaration {
     zoom?: string;
 }
 
+const renderedMaps: number[] = [];
+
 const drawTimeline = (container: HTMLDivElement, timeline: sikhTimeline) => {
     let box = container.parentElement;
     if (!box) return;
@@ -20,19 +22,25 @@ const drawTimeline = (container: HTMLDivElement, timeline: sikhTimeline) => {
         (container.style as any).zoom = (boxWidth/timeline.container.width).toFixed(3);
     }
 
-    // empty container
-    container.innerHTML = "";
-
+    let parser = new DOMParser();
     timeline.maps.forEach(map => {
-        let img = document.createElement("img");
-        img.src = `/maps/${map.src}`;
-        img.style.left = `${map.display.x}px`;
-        img.style.top = `${map.display.y}px`;
-        img.style.position = "absolute";
-        img.height = map.display.height;
-        img.width = map.display.width;
-        img.style.transform = `rotate(${map.display.rotation}deg)`;
-        container.appendChild(img);
+        // Don't need to set maps every resize
+        if (renderedMaps.includes(map.id)) return;
+        renderedMaps.push(map.id);
+        fetch(`/maps/${map.src}`)
+        .then(res => res.text())
+        .then(svgtext => {
+            let svg = parser.parseFromString(svgtext, "image/svg+xml").querySelector("svg");
+            if (svg) {
+                svg.setAttribute("data-id", map.id.toString());
+                (svg.style as any).zoom = map.display.zoom;
+                svg.style.left = `${map.display.x}px`;
+                svg.style.top = `${map.display.y}px`;
+                svg.style.position = "absolute";
+                svg.style.transform = `rotate(${map.display.rotation}deg)`;
+                container.appendChild(svg);
+            }
+        });
     })
 }
 
@@ -45,8 +53,12 @@ export default function Timeline ({ data } : { data: sikhTimeline }) {
         if (container) {
             drawTimeline(container, data);
             window.addEventListener("resize", () => drawTimeline(container, data));
+            return () => {
+                container.innerHTML = "";
+                window.removeEventListener("resize", () => drawTimeline(container, data));
+            }
         }  
-    })
+    }, [data]);
 
     return (
         <div className="w-full h-full flex p-4 lg:p-16 rounded overflow-hidden">

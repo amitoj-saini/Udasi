@@ -5,10 +5,10 @@
     },
     "maps": [
         {
+            "id": 1,
             "src": "pakistan.svg",
             "display": {
-                "height": 340,
-                "width": 395,
+                "zoom": 0.602,
                 "x": 0,
                 "y": 0,
                 "rotation": 0
@@ -18,12 +18,12 @@
             ]
         },
         {
+            "id": 2,
             "src": "india.svg",
             "display": {
-                "height": 750,
-                "width": 666,
-                "x": 171,
-                "y": 5,
+                "zoom": 1.098,
+                "x": 155,
+                "y": 2,
                 "rotation": 0
             },
             "history": [
