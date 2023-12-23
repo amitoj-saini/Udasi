@@ -24,12 +24,15 @@ const drawTimeline = (container: HTMLDivElement, timeline: sikhTimeline) => {
 
     let parser = new DOMParser();
     timeline.maps.forEach(map => {
-        // Don't need to set maps every resize
+        // For some render issue
         if (renderedMaps.includes(map.id)) return;
         renderedMaps.push(map.id);
         fetch(`/maps/${map.src}`)
         .then(res => res.text())
         .then(svgtext => {
+            
+            
+            renderedMaps.slice(renderedMaps.findIndex(mapId => mapId == map.id), 1);
             let svg = parser.parseFromString(svgtext, "image/svg+xml").querySelector("svg");
             if (svg) {
                 svg.setAttribute("data-id", map.id.toString());
