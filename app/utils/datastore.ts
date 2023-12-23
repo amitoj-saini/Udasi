@@ -13,8 +13,19 @@ export interface sikhFormattedMapping {
     gursikh: sikhMapping[] 
 }
 
-interface sikhHistory {
+interface SikhiKeywords {
+    name: string,
+    color: string
+}
 
+interface sikhHistory {
+    id: number,
+    title: string,
+    keywords: SikhiKeywords[]
+    position: {
+        x: number,
+        y: number
+    }
 }
 
 interface sikhMap {

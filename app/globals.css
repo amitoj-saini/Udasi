@@ -10,6 +10,19 @@
     --blue: rgb(26, 137, 248);
     --yellow: rgb(255, 174, 0);
     --light-text: hsl(240 10% 3.9%/.6);
+    --lightmap: #bef2d5;
+    --darkmap: #203e42;
+    --map-border-light: rgb(55, 55, 91);
+    --map-border-dark: rgb(102, 115, 144);
+    --map-bg: var(--lightmap);
+    --map-border: var(--map-border-light);
+}
+
+
+
+[data-mode="dark"] {
+    --map-bg: var(--darkmap);
+    --map-border: var(--map-border-dark);
 }
 
 html, body {
@@ -42,4 +55,13 @@ html, body {
     100% {
         opacity: 0%;
     }
+}
+
+.map {
+    fill: var(--map-bg);
+}
+
+.map path {
+    stroke-width: 0.4;
+    stroke: var(--map-border);
 }

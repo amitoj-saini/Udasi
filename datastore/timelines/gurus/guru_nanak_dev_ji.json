@@ -1,7 +1,7 @@
 {
     "container": {
-        "height": 726,
-        "width": 800
+        "height": 766,
+        "width": 842
     },
     "maps": [
         {
@@ -14,7 +14,20 @@
                 "rotation": 0
             },
             "history": [
-
+                {
+                    "id": 1,
+                    "title": "Birthplace of Guru Nanak Dev ji",
+                    "keywords": [
+                        {
+                            "name": "Janam Asthan",
+                            "color": "some color"
+                        }
+                    ],
+                    "position": {
+                        "x": 490,
+                        "y": 260
+                    }
+                }
             ]
         },
         {

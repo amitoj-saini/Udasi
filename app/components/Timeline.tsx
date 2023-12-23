@@ -33,11 +33,25 @@ const drawTimeline = (container: HTMLDivElement, timeline: sikhTimeline) => {
             let svg = parser.parseFromString(svgtext, "image/svg+xml").querySelector("svg");
             if (svg) {
                 svg.setAttribute("data-id", map.id.toString());
+                svg.classList.add("map");
+                //svg.classList.add("dark:fill-darkmap", "fill-lightmap");
                 (svg.style as any).zoom = map.display.zoom;
                 svg.style.left = `${map.display.x}px`;
                 svg.style.top = `${map.display.y}px`;
                 svg.style.position = "absolute";
                 svg.style.transform = `rotate(${map.display.rotation}deg)`;
+                let points = "";
+                map.history.forEach(history => {
+                    // every piece of history
+                    // for some odd reason circles are not being appended when using svg.appendChild so instead use innerHTML
+                    //points += `<circle class="stroke-13 dark:stroke-white stroke-black" r="8" cx="${history.position.x}" cy="${history.position.y}"></circle>`;
+                    points +=  `
+                    <g style="transform: translate(${history.position.x}px, ${history.position.y}px)">
+                        <rect class="stroke-23 dark:stroke-white stroke-black" width="20" height="20"></rect>
+                    </g>`;
+                    //points += `< class="stroke-13 dark:stroke-white stroke-black" r="8" cx="${history.position.x}" cy="${history.position.y}"></circle>`;
+                });
+                //svg.innerHTML += points;
                 container.appendChild(svg);
             }
         });
@@ -62,11 +76,11 @@ export default function Timeline ({ data } : { data: sikhTimeline }) {
 
     return (
         <div className="w-full h-full flex p-4 lg:p-16 rounded overflow-hidden">
-            <div className="h-full w-full columns-2 rounded flex border dark:border-zinc-800 border-zinc-200">
-                <div className="w-full h-full rounded-s flex justify-center items-center relative">
+            <div className="h-full w-full columns-2 rounded flex">
+                <div className="dark:bg-slate-800 bg-sky-200 w-full h-full rounded flex justify-center items-center relative">
                     <div className="absolute" ref={containerRef}></div>
                 </div>
-                <div className="w-full h-full max-w-sm dark:bg-zinc-900 bg-zinc rounded-e hidden lg:block"></div>
+                <div className="w-full h-full max-w-sm rounded-e hidden lg:block"></div>
             </div>
         </div>
     );
