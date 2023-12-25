@@ -9,7 +9,7 @@ export default function Sikh({params, searchParams} : {params: { sikh: string; }
         <div className="w-full h-full flex flex-col">
             <TopBar/>
             <div className="w-full grow my-12 flex text-center justify-center">
-                <Timeline data={data}></Timeline>
+                {data ? <Timeline data={data}></Timeline> : <></>}
             </div>
         </div>
     )

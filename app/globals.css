@@ -10,19 +10,22 @@
     --blue: rgb(26, 137, 248);
     --yellow: rgb(255, 174, 0);
     --light-text: hsl(240 10% 3.9%/.6);
-    --lightmap: #bef2d5;
-    --darkmap: #203e42;
     --map-border-light: rgb(55, 55, 91);
     --map-border-dark: rgb(102, 115, 144);
-    --map-bg: var(--lightmap);
+    --map-bg: #bef2d5;
     --map-border: var(--map-border-light);
+    --marker-color: #ec6b62;
+
+    --map-overlay: rgb(255, 255, 255);
 }
 
 
 
 [data-mode="dark"] {
-    --map-bg: var(--darkmap);
+    --map-bg: #18181b;
     --map-border: var(--map-border-dark);
+    --marker-color: #d15c4a;
+    --map-overlay: #020617;
 }
 
 html, body {
@@ -64,4 +67,15 @@ html, body {
 .map path {
     stroke-width: 0.4;
     stroke: var(--map-border);
+}
+
+.marker-point {
+    z-index: 10;
+}
+
+.marker-point path {
+    position: absolute;
+    fill: var(--marker-color);
+    stroke: none !important;
+    cursor: pointer;
 }

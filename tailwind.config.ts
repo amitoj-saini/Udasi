@@ -21,7 +21,7 @@ const config: Config = {
       },
       colors: {
         'lightmap': '#bef2d5',
-        'darkmap': '#203e42'
+        'darkmap': '#203e42',
       }
     },
   },

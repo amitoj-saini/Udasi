@@ -31,6 +31,7 @@ interface sikhHistory {
 interface sikhMap {
     id: number,
     src: string,
+    svg: string | null,
     display: {
         zoom: number,
         x: number,
@@ -66,7 +67,16 @@ export const getSikh = (id: string) => {
             let mapping = getMapping();
             for (let i=0; i<mapping.length; i++) {
                 if (sikhId == mapping[i].id) {
-                    return readJson(path.join(datastore, "timelines", mapping[i].timeline));
+                    let data = readJson(path.join(datastore, "timelines", mapping[i].timeline)) as sikhTimeline;
+                    for (let i=0; i<data.maps.length; i++) {
+                        try {
+                            data.maps[i].svg = fs.readFileSync(path.join(datastore, "maps", data.maps[i].src), "utf8");
+                        } catch {
+                            continue;
+                        }
+                    }
+                    
+                    return data;
                 }
             }
         }
