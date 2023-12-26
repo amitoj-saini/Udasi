@@ -16,16 +16,21 @@
             "history": [
                 {
                     "id": 1,
-                    "title": "Birthplace of Guru Nanak Dev ji",
+                    "title": "Birthplace of Guru Ji",
+                    "date": "April 15, 1469",
                     "keywords": [
                         {
                             "name": "Janam Asthan",
-                            "color": "some color"
+                            "classname": "bg-blue-400 text-cyan-100"
+                        },
+                        {
+                            "name": "Important",
+                            "classname": "bg-red-400 text-pink-100"
                         }
                     ],
                     "position": {
-                        "x": 485,
-                        "y": 230
+                        "x": 295,
+                        "y": 140
                     }
                 }
             ]

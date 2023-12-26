@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: giest-medium;
+    src: url(/giest-medium.otf);
+}
+
 :root {
     --color: rgb(0, 0, 0);
     --bg: rgb(255, 255, 255);
@@ -12,14 +17,11 @@
     --light-text: hsl(240 10% 3.9%/.6);
     --map-border-light: rgb(55, 55, 91);
     --map-border-dark: rgb(102, 115, 144);
-    --map-bg: #bef2d5;
+    --map-bg: #f4f4f5;
     --map-border: var(--map-border-light);
     --marker-color: #ec6b62;
-
     --map-overlay: rgb(255, 255, 255);
 }
-
-
 
 [data-mode="dark"] {
     --map-bg: #18181b;
@@ -67,10 +69,6 @@ html, body {
 .map path {
     stroke-width: 0.4;
     stroke: var(--map-border);
-}
-
-.marker-point {
-    z-index: 10;
 }
 
 .marker-point path {

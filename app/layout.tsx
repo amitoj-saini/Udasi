@@ -1,9 +1,8 @@
-import { Inter } from 'next/font/google';
+import { GeistSans } from 'geist/font/sans';
 import { cookies } from 'next/headers';
 import type { Metadata } from 'next';
-import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+import './globals.css'
 
 export const metadata: Metadata = {
   title: "Udasi",
@@ -20,7 +19,7 @@ export default function RootLayout({
 
   return (
     <html data-mode={theme} lang="en">
-      <body className={`${inter.className} dark:bg-black bg-white text-black dark:text-white`}>{children}</body>
+      <body className={`${GeistSans.className} dark:bg-black bg-white text-black dark:text-white`}>{children}</body>
     </html>
   )
 }

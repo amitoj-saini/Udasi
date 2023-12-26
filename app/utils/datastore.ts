@@ -15,12 +15,13 @@ export interface sikhFormattedMapping {
 
 interface SikhiKeywords {
     name: string,
-    color: string
+    classname: string
 }
 
 interface sikhHistory {
     id: number,
     title: string,
+    date: string,
     keywords: SikhiKeywords[]
     position: {
         x: number,
