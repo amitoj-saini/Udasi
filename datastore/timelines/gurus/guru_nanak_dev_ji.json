@@ -20,10 +20,12 @@
                     "date": "April 15, 1469",
                     "keywords": [
                         {
+                            "id": 1,
                             "name": "Janam Asthan",
                             "classname": "bg-blue-400 text-cyan-100"
                         },
                         {
+                            "id": 2,
                             "name": "Important",
                             "classname": "bg-red-400 text-pink-100"
                         }

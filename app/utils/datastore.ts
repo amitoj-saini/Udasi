@@ -14,6 +14,7 @@ export interface sikhFormattedMapping {
 }
 
 interface SikhiKeywords {
+    id: number,
     name: string,
     classname: string
 }
