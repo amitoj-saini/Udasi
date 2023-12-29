@@ -1,3 +1,4 @@
+import markdownit from 'markdown-it'
 import path from "path";
 import fs from "fs";
 
@@ -23,6 +24,8 @@ interface sikhHistory {
     id: number,
     title: string,
     date: string,
+    src: string,
+    html: string | null,
     keywords: SikhiKeywords[]
     position: {
         x: number,
@@ -63,6 +66,7 @@ export const getMapping = () =>
     readJson(mapFile, []);
 
 export const getSikh = (id: string) => {
+    const md = markdownit();
     try {
         let sikhId = parseInt(id);
         if (!isNaN(sikhId)) {
@@ -70,9 +74,16 @@ export const getSikh = (id: string) => {
             for (let i=0; i<mapping.length; i++) {
                 if (sikhId == mapping[i].id) {
                     let data = readJson(path.join(datastore, "timelines", mapping[i].timeline)) as sikhTimeline;
-                    for (let i=0; i<data.maps.length; i++) {
+                    for (let x=0; x<data.maps.length; x++) {
                         try {
-                            data.maps[i].svg = fs.readFileSync(path.join(datastore, "maps", data.maps[i].src), "utf8");
+                            data.maps[x].svg = fs.readFileSync(path.join(datastore, "maps", data.maps[x].src), "utf8");
+                            for (let y=0; y<data.maps[x].history.length; y++) {
+                                try {
+                                    data.maps[x].history[y].html = md.render(fs.readFileSync(path.join(datastore, "markdown", data.maps[x].history[y].src), "utf8"));
+                                } catch {
+                                    continue;
+                                }
+                            }
                         } catch {
                             continue;
                         }

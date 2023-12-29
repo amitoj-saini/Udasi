@@ -15,17 +15,19 @@
     --blue: rgb(26, 137, 248);
     --yellow: rgb(255, 174, 0);
     --light-text: hsl(240 10% 3.9%/.6);
-    --map-border-light: rgb(55, 55, 91);
+    --map-border-light: rgb(102, 115, 144);
     --map-border-dark: rgb(102, 115, 144);
     --map-bg: #f4f4f5;
     --map-border: var(--map-border-light);
     --marker-color: #ec6b62;
+    --selected-marker-color: rgb(26, 137, 248, 0.8);
     --map-overlay: rgb(255, 255, 255);
 }
 
 [data-mode="dark"] {
     --map-bg: #18181b;
     --map-border: var(--map-border-dark);
+    --selected-marker-color: rgb(88, 162, 235);
     --marker-color: #d15c4a;
     --map-overlay: #020617;
 }
@@ -62,6 +64,42 @@ html, body {
     }
 }
 
+@keyframes expand-h {
+    0% {
+        height: 20px;
+    }
+
+    100% {
+        height: 100%;
+    }
+}
+
+@keyframes shrink-h {
+    0% {
+        height: 100%;
+    }
+
+    100% {
+        height: 20px;
+    }
+}
+
+.expand-history {
+    animation: expand-h 0.3s;
+}
+
+.shrink-history[data-closing="true"] {
+    animation: shrink-h 0.3s;
+}
+
+.shrink-history[data-closing="true"] .md {
+    animation: closeout 1s;
+}
+
+.expand-history .md {
+    animation: openin 1s;
+}
+
 .map {
     fill: var(--map-bg);
 }
@@ -76,4 +114,8 @@ html, body {
     fill: var(--marker-color);
     stroke: none !important;
     cursor: pointer;
+}
+
+.marker-point path[data-selected="true"] {
+    fill: var(--selected-marker-color) !important;
 }

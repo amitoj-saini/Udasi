@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/markdown-it": "^13.0.7",
     "geist": "^1.2.0",
+    "markdown-it": "^14.0.0",
     "next": "14.0.2",
     "react": "^18",
     "react-dom": "^18"
